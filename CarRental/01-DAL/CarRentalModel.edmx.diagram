@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e11f7cf9ce1c4956adf8082607e42e39" Name="Diagram1">
+        <EntityTypeShape EntityType="CarRentalModel.Branch" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalModel.Car" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalModel.CarType" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalModel.RentalOrder" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalModel.UserRole" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRentalModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="CarRentalModel.FK__Cars__BranchId__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalModel.FK__Cars__CarTypeId__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalModel.FK__RentalOrd__CarId__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalModel.FK__RentalOrd__UserI__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRentalModel.FK__Users__UserRoleI__239E4DCF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,15 @@
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\03-BLL\bin\Debug\03-BLL.dll
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\03-BLL\bin\Debug\03-BLL.pdb
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\03-BLL\obj\Debug\03-BLL.dll
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\03-BLL\obj\Debug\03-BLL.pdb
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\03-BLL\obj\Debug\03-BLL.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\01-DAL.dll
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\02-BO.dll
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\EntityFramework.dll
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\01-DAL.pdb
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\02-BO.pdb
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\EntityFramework.xml
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Owner\Documents\Visual Studio 2015\Projects\CarRental\03-BLL\bin\Debug\Newtonsoft.Json.xml

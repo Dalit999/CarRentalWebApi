@@ -1,0 +1,10 @@
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\01-DAL.dll.config
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\01-DAL.dll
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\01-DAL.pdb
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\EntityFramework.dll
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\EntityFramework.xml
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\obj\Debug\01-DAL.dll
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\obj\Debug\01-DAL.pdb
+C:\Users\Owner\documents\visual studio 2015\Projects\CarRental\01-DAL\obj\Debug\01-DAL.csprojResolveAssemblyReference.cache
