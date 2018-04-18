@@ -1,3 +1,17 @@
+/*****************************/
+/* Create CarRental Database */
+/*****************************/
+
+USE [Master]
+GO
+
+CREATE DATABASE [CarRental] ON  PRIMARY 
+( NAME = N'CarRental', FILENAME = N'\FSASQLDBCarRental.mdf' , 
+  SIZE = 2GB , MAXSIZE = 8GB, FILEGROWTH = 1GB )
+LOG ON 
+( NAME = N'CarRental_log', FILENAME = N'\FSASQLDBCarRental_log.ldf' , 
+  SIZE = 1GB , MAXSIZE = 2GB , FILEGROWTH = 10%)
+GO
 /*************************/
 /* Create Branches Table */
 /*************************/
