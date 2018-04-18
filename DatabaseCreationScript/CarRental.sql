@@ -5,12 +5,10 @@
 USE [Master]
 GO
 
-CREATE DATABASE [CarRental] ON  PRIMARY 
-( NAME = N'CarRental', FILENAME = N'\FSASQLDBCarRental.mdf' , 
-  SIZE = 2GB , MAXSIZE = 8GB, FILEGROWTH = 1GB )
-LOG ON 
-( NAME = N'CarRental_log', FILENAME = N'\FSASQLDBCarRental_log.ldf' , 
-  SIZE = 1GB , MAXSIZE = 2GB , FILEGROWTH = 10%)
+IF DB_ID (N'CarRental') IS NOT NULL
+DROP DATABASE CarRental;
+GO
+CREATE DATABASE CarRental;  
 GO
 /*************************/
 /* Create Branches Table */
@@ -461,7 +459,6 @@ INSERT INTO [dbo].[Users]
 ([FullName]
 ,[IdentificationNumber]
 ,[UserName]
-,[BirthDate]
 ,[IsFemale]
 ,[Email]
 ,[Password]
@@ -470,8 +467,7 @@ INSERT INTO [dbo].[Users]
 VALUES
 ('Dalit Shemesh'
 ,'058811720'
-,'Dalit2'
-,''
+,'Dalit'
 ,1
 ,'shemesh.dalit@gmail.com'
 ,'dalit999'
@@ -824,7 +820,7 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(2
+(1
 ,0
 ,1
 ,'8846576'
@@ -840,11 +836,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(3
+(2
 ,4
 ,1
 ,'1111111'
-,1012
+,3
 ,'https://d32ptomnhiuevv.cloudfront.net/en-gb/sites/default/files/styles/model_landing_thumbnail/public/models/hyundai-getz-gsi-1.4-2006.jpg?itok=6q6Z1AIT')
 GO
 
@@ -856,7 +852,7 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(2
+(1
 ,4
 ,1
 ,'2222222'
@@ -872,11 +868,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(3
+(2
 ,0
 ,1
 ,'999999'
-,1013
+,4
 ,'https://res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_large/v1/editorial/dp/images/uploads/Hyundai-Getz-2002-3W.jpg')
 GO
 
@@ -888,11 +884,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(3
+(2
 ,15
 ,1
 ,'798789'
-,1012
+,3
 ,'https://res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_low/v1/cg_vehicle/ds/2009_hyundai_getz.jpg')
 GO
 
@@ -904,7 +900,7 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(3
+(2
 ,1000
 ,1
 ,'123456'
@@ -920,7 +916,7 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(2
+(1
 ,0
 ,0
 ,'13456'
@@ -936,7 +932,7 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(2
+(1
 ,0
 ,0
 ,'asdff'
@@ -952,11 +948,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(1013
+(3
 ,9000
 ,0
 ,'blue box'
-,1013
+,4
 ,'https://dyn0.media.forbiddenplanet.com/products/tardis-3.jpg.jpg')
 GO
 
@@ -968,11 +964,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(1015
+(5
 ,500
 ,1
 ,'8846132'
-,1012
+,3
 ,'https://res.cloudinary.com/autofile-communications-inc/image/upload/c_fit,h_365,w_584/v1/article/article17139/dc9afscjkmyiryaf7lus.jpg')
 GO
 
@@ -984,7 +980,7 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(1015
+(5
 ,40000
 ,1
 ,'7778141'
@@ -1000,11 +996,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(1014
+(4
 ,874927
 ,1
 ,'9801146'
-,1013
+,4
 ,'http://www.car-blogger.co.uk/wp-content/uploads/2015/08/best-family-car.jpg')
 GO
 
@@ -1016,11 +1012,11 @@ INSERT INTO [dbo].[Cars]
 ,[BranchId]
 ,[Photo])
 VALUES
-(3
+(2
 ,460
 ,1
 ,'19975041'
-,1013
+,4
 ,'http://i.i-sgcm.com/cars_used/201411/438078_2.jpg')
 GO
 
@@ -1039,8 +1035,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('4/30/2018 12:00:00 AM'
 ,'4/24/2019 12:00:00 AM'
-,2
-,1013)
+,1
+,9)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1053,8 +1049,8 @@ VALUES
 ('12/24/2017 12:00:00 AM'
 ,'1/15/2018 12:00:00 AM'
 ,'1/15/2018 12:00:00 AM'
-,1025
-,1015)
+,7
+,11)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1067,8 +1063,8 @@ VALUES
 ('4/1/2018 12:00:00 AM'
 ,'4/3/2018 12:00:00 AM'
 ,'4/5/2018 12:00:00 AM'
-,1031
-,9)
+,13
+,5)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1081,7 +1077,7 @@ VALUES
 ('2/3/2018 12:00:00 AM'
 ,'2/19/2018 12:00:00 AM'
 ,'2/17/2018 12:00:00 AM'
-,3
+,2
 ,3)
 GO
 
@@ -1095,7 +1091,7 @@ VALUES
 ('1/9/2018 12:00:00 AM'
 ,'2/20/2018 12:00:00 AM'
 ,'2/20/2018 12:00:00 AM'
-,1027
+,9
 ,2)
 GO
 
@@ -1107,8 +1103,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('5/15/2018 12:00:00 AM'
 ,'6/15/2018 12:00:00 AM'
-,1026
-,1017)
+,8
+,12)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1119,8 +1115,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('6/18/2018 12:00:00 AM'
 ,'6/25/2018 12:00:00 AM'
-,1030
-,1017)
+,12
+,12)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1131,8 +1127,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('4/1/2018 12:00:00 AM'
 ,'4/21/2018 12:00:00 AM'
-,5
-,1015)
+,4
+,11)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1143,8 +1139,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('4/19/2018 12:00:00 AM'
 ,'4/23/2018 12:00:00 AM'
-,6
-,9)
+,5
+,5)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1155,8 +1151,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('4/18/2018 12:00:00 AM'
 ,'7/31/2018 12:00:00 AM'
-,1028
-,13)
+,10
+,7)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1167,8 +1163,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('5/1/2018 12:00:00 AM'
 ,'5/31/2018 12:00:00 AM'
-,7
-,1018)
+,6
+,13)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1179,8 +1175,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('4/25/2018 12:00:00 AM'
 ,'6/20/2018 12:00:00 AM'
-,1031
-,1014)
+,13
+,10)
 GO
 
 INSERT INTO [dbo].[RentalOrders]
@@ -1191,8 +1187,8 @@ INSERT INTO [dbo].[RentalOrders]
 VALUES
 ('4/28/2018 12:00:00 AM'
 ,'5/23/2018 12:00:00 AM'
-,1033
-,9)
+,15
+,5)
 GO
 
 
