@@ -23,7 +23,7 @@ namespace _02_BO
         public string Password { get; set; }
 
         [Required]
-        [StringLength(9,MinimumLength =9)]
+        [StringLength(9,MinimumLength =5)]
         [IdentificationNumber ]
         [JsonProperty]
         public string IdentificationNumber { get; set; }

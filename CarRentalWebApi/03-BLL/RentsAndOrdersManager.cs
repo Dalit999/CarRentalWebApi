@@ -52,12 +52,12 @@ namespace _03_BLL
             errorMessage = "";
             try
             {
-                if (order.StartRent < DateTime.Now)
+                if (order.StartRent.Date < DateTime.Now.Date)
                 {
-                    errorMessage = $"The order start date {order.StartRent} should be today {DateTime.Now} or later";
+                    errorMessage = $"The order start date {order.StartRent.Date} should be today {DateTime.Now.Date} or later";
                     return -3;
                 }
-                if (order.EndRent<=order.StartRent)
+                if (order.EndRent.Date <= order.StartRent.Date)
                 {
                     errorMessage = "The order end date should be greater than the start date";
                     return -3;
@@ -124,9 +124,9 @@ namespace _03_BLL
             {
                 errorMessage = "";
 
-                if (updatedOrder.EndRent <= updatedOrder.StartRent)
+                if (updatedOrder.EndRent.Date <= updatedOrder.StartRent.Date)
                 {
-                    errorMessage = $"The order end date {updatedOrder.EndRent} should be greater than the start date {updatedOrder.StartRent}";
+                    errorMessage = $"The order end date {updatedOrder.EndRent.Date} should be greater than the start date {updatedOrder.StartRent.Date}";
                     return false;
                 }
                 using (CarRentalEntities carEntities = new CarRentalEntities())
@@ -204,7 +204,7 @@ namespace _03_BLL
                 {
                     foreach (var order in carEntities.RentalOrders)
                     {
-                        if (order.CarId != car.CarId || order.ActualRentEndDate != null || order.RentEndDate.Date >= fromDate.Date)
+                        if (order.CarId != car.CarId || order.ActualRentEndDate != null || order.RentEndDate.Date <= fromDate.Date)
                         {
                             continue;
                         }

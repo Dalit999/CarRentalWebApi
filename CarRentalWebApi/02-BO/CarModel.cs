@@ -25,9 +25,9 @@ namespace _02_BO
             bool isFree = true;//why not be optimistic?
             foreach (var order in ordersForCar.Where(o=> o.ActualEndRent==null)) //we are only interested in active orders 
             {
-                if (order.EndRent < startDate)
+                if (order.EndRent.Date < startDate.Date)
                     continue;
-                if (order.StartRent> endDate)
+                if (order.StartRent.Date > endDate.Date)
                     continue;
                 return false;
             }

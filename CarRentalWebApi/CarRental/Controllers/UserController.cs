@@ -111,8 +111,17 @@ namespace CarRental.Controllers
             try
             {
                 if (ModelState.IsValid)
+                {
                     if (usersManager.UpdateUser(userModel))
                         return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+
+                var errorMessage = ModelState.Values.SelectMany(v => v.Errors).ToList().Select(e => e.ErrorMessage).Where(e => e != "").FirstOrDefault();
+                if (errorMessage == null)
+                    errorMessage = ModelState.Values.SelectMany(v => v.Errors).ToList().Select(e => e.Exception).Where(e => e.Message != "").Select(e => e.Message).FirstOrDefault();
+                if (errorMessage != null)
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, new HttpError());
             }
             catch (Exception ex)
