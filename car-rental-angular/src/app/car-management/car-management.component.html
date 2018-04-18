@@ -1,0 +1,70 @@
+<div class="pageContent">
+<div class="container">
+    <p>
+  List of Cars:
+      </p>
+    <div *ngIf="carsList!=null && carsList.length>0">
+      <input type="button" value="{{newCarView? 'Undo new car':'Add new car'}}" (click)="newCarRequired()" *ngIf="currentUser!=null && currentUser.Role=='admin'"/>
+        <table border="1" class="table table-striped table-hover">
+            <tr>
+                <th>License Plate:</th>
+                <th>Type:</th>
+                <th>Branch:</th>
+                <th>Kilometers:</th>
+                <th>Is Functional?:</th>
+                <th>Photo:</th>
+                <th *ngIf="currentUser!=null && currentUser.Role=='admin'">Actions:</th>
+              </tr>
+              <tr *ngIf="newCarView && newCar!=null" class="addCar">
+                  <td><input type="text" [(ngModel)]="newCar.LicensePlate" required/></td>
+                  <td>
+                    <select [(ngModel)]="newCarTypeIndex">
+                        <option *ngFor="let carType of carTypeList;let i=index " [value]="i" >{{carType.Producer}} {{carType.Model}} {{carType.ManufacturingYear}} {{carType.Gear}}</option>
+                    </select>
+                </td>                    
+                <td><select [(ngModel)]="newBranchIndex">
+                    <option *ngFor="let branch of branchesList;let i=index " [value]="i" >{{branch.BranchName}} {{branch.Address}} </option>
+                </select></td>
+                <td><input type="number" [(ngModel)]="newCar.CurrentKM"/></td>
+                <td><input type="checkbox" [(ngModel)]="newCar.IsFunctional"/></td>
+                <td><input type="text" [(ngModel)]="newCar.CarPhoto" /></td>
+                <td><input type="button" value="ADD" (click)="addNewCar();" *ngIf="currentUser!=null && currentUser.Role=='admin'"/></td>
+
+              </tr>
+              <ng-container *ngFor="let car of carsList">
+              <tr> 
+                  <td>{{car.LicensePlate}}</td>
+                  <td>{{car.CarType.Producer}}
+                    {{car.CarType.Model}}
+                    {{car.CarType.ManufacturingYear}}
+                    {{car.CarType.Gear}}</td>
+                    <td>{{car.Branch.BranchName}}<br/>{{car.Branch.Address}}</td>
+                    <td>{{car.CurrentKM}}</td>
+                    <td><input type="checkbox" [checked]="car.IsFunctional" disabled/></td>
+                    <td><img [src]="car.CarPhoto"/></td>
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'">
+                  <input type="button" value="DELETE!" (click)="deleteCar(car);" />
+                  <input type="button" value="UPDATE!" (click)="updateCar(car);" />
+                </td>
+              </tr>
+              <tr *ngIf="carToUpdate.LicensePlate==car.LicensePlate"> 
+                  <td> {{carToUpdate.LicensePlate}}</td>
+                  <td><select [(ngModel)]="carTypeToUpdateIndex">
+                      <option *ngFor="let carType of carTypeList;let i=index " [value]="i" >{{carType.Producer}} {{carType.Model}} {{carType.ManufacturingYear}} {{carType.Gear}}</option>
+                  </select></td>
+                  <td><select [(ngModel)]="branchToUpdateIndex">
+                      <option *ngFor="let branch of branchesList;let i=index " [value]="i" >{{branch.BranchName}} {{branch.Address}} </option>
+                  </select></td>
+                  <td><input type="text" [(ngModel)]="carToUpdate.CurrentKM"/></td>
+                  <td><input type="checkbox" [(ngModel)]="carToUpdate.IsFunctional"/></td>
+                  <td> <input type="text"  [(ngModel)]="carToUpdate.CarPhoto"/></td>
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'">
+                  <input type="button" value="SAVE!" (click)="doUpdate(branch);" />
+                  <input type="button" value="Undo changes" (click)="undoUpdate();" />
+                </td>
+              </tr>              
+            </ng-container>
+          </table>
+    </div>
+    </div>  
+</div>

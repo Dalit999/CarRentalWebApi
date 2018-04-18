@@ -1,0 +1,22 @@
+<div class="pageContent">
+    <div class="container">
+        <div class="panel panel-primary panel-xs">
+            <div class="panel-heading">Please enter you username and password:</div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>username:</td>
+                        <td><input type="text"  [(ngModel)]="userName"/></td>
+                    </tr>
+                    <tr>
+                        <td>password:</td>
+                        <td><input type="password"  [(ngModel)]="userPass"/></td>
+                    </tr>
+                    <tr >
+                        <td col=2><input type="button" value="login" (click)="OnLogin();"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>  
+</div>

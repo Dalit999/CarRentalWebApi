@@ -1,0 +1,48 @@
+<div class="pageContent">
+<div class="container">
+    <p>
+  List of Car Types:
+      </p>
+    <div *ngIf="carTypesList!=null && carTypesList.length>0">
+      <input type="button" value="{{newCarTypeView? 'Undo new car type':'Add new car type'}}" (click)="newCarTypeRequired()" *ngIf="currentUser!=null && currentUser.Role=='admin'"/>
+        <table border="1" class="table table-striped table-hover">
+            <tr>
+                <th>Manufacturer:</th>
+                <th>Model:</th>
+                <th>Year:</th>
+                <th>Gear:</th>
+                <th>Daily Cost:</th>
+                <th>Daily Penalty:</th>
+                <th *ngIf="currentUser!=null && currentUser.Role=='admin'">Actions:</th>
+              </tr>
+              <tr *ngIf="newCarTypeView && newCarType!=null" class="addCarType">
+                  <td><input type="text" [(ngModel)]="newCarType.Producer" required/></td>
+                  <td><input type="text" [(ngModel)]="newCarType.Model" required/></td>
+                <td><input type="number" [(ngModel)]="newCarType.ManufacturingYear" required/></td>
+                <!--td><input type="text" [(ngModel)]="newCarType.Gear"/></td-->
+                <td>
+                  <select [(ngModel)]="newCarType.Gear">
+                    <option value="Automatic" checked>Automatic</option>
+                    <option value="Manual" >Manual</option>
+                  </select>
+                </td>
+                <td><input type="text" [(ngModel)]="newCarType.DailyCost" required/></td>
+                <td><input type="text" [(ngModel)]="newCarType.DailyPenaltyFee" required/></td>
+                <td><input type="button" value="ADD" (click)="addNewCarType();" *ngIf="currentUser!=null && currentUser.Role=='admin'"/></td>
+
+              </tr>
+              <tr *ngFor="let carType of carTypesList"> 
+                  <td>{{carType.Producer}}</td>
+                  <td>{{carType.Model}}</td>
+                  <td>{{carType.ManufacturingYear}}</td>
+                  <td>{{carType.Gear}}</td>
+                  <td>{{carType.DailyCost}}</td>
+                  <td>{{carType.DailyPenaltyFee}}</td>
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'"><input type="button" value="DELETE!" (click)="deleteCarType(carType);" />
+                </td>
+              </tr>
+                 
+          </table>
+    </div>
+    </div>  
+  </div>

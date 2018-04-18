@@ -1,0 +1,14 @@
+table{
+    margin-left:120px;
+    font-size: 20px;
+}
+td,th{
+    padding:5px;
+    font-size: 15px;
+}
+.pageContent
+{
+    min-height: 850px;
+    height: 850px;
+    overflow-x: scroll;
+}

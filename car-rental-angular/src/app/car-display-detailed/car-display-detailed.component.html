@@ -1,0 +1,33 @@
+<table>
+  <tr>
+      <td>
+      <app-car-display-small *ngIf="currentCar!=null"  [car]="currentCar"></app-car-display-small>
+      </td>
+
+      <td>
+        <div class="calculationArea">
+          <div class="calcElement">
+            From <my-date-picker [options]="myDatePickerOptionsFrom" [(ngModel)]="dateFromObject" required (dateChanged)="onDateFromChanged($event)" *ngIf="toggle"></my-date-picker>
+          </div>
+          <div class="calcElement">
+            To <my-date-picker [options]="myDatePickerOptionsTo" [(ngModel)]="dateToObject" required (dateChanged)="onDateToChanged($event)" *ngIf="toggle"></my-date-picker>
+          </div>
+          <div class="calcElement">
+            <span class="warning" *ngIf="!validDates">Attention! the dates range you selected is not valid - coinsides with other reservations for the same car!</span>
+          </div>
+          <div class="calcElement">
+            <input type="button" (click)="doCalcPrice()" value="Calculate Price!">
+          </div>  
+          <div class="calcElement">
+            Your total order price is: {{total}}
+          </div>
+          <div class="calcElement">
+            <input type="button" value="ORDER!" (click)="OnCarOrderClicked();"/>
+          </div>
+        </div>
+      </td>
+  </tr>
+</table>
+
+
+

@@ -1,0 +1,12 @@
+.pageContent
+{
+    min-height: 850px;
+    height: 850px;
+    overflow-x: scroll;
+}
+table
+{
+    max-width: 300px;
+    
+    margin-right:45%;
+}

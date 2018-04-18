@@ -1,0 +1,25 @@
+<div class="pageContent">
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          Please enter your personal data:
+          </div>
+          <div class="panel-body">
+            <div class="inputElement">  <span>FullName:</span><input type="text" [(ngModel)]="newUser.FullName" required/></div>
+            <div class="inputElement">  <span>IdentificationNumber:</span><input type="number" [(ngModel)]="newUser.IdentificationNumber" required/></div>
+            <div class="inputElement"><span>BirthDate:</span>
+              <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onBirthDateChanged($event)" ></my-date-picker>
+            </div>
+            <div class="inputElement"><input type="radio" name="isFemale" [checked]="newUser.IsFemale" (change)="onGenderSelectionChange(1)"/>Female<input type="radio" name="isFemale" [checked]="!newUser.IsFemale" (change)="onGenderSelectionChange(0)"/>Male  </div>
+            <div class="inputElement"><span>Email:</span><input type="email" [(ngModel)]="newUser.Email" required/></div>
+            <div class="inputElement"><span>UserName:</span><input type="text" [(ngModel)]="newUser.UserName" required/></div>
+            <div class="inputElement"><span>Password:</span><input type="password" [(ngModel)]="newUser.Password" required/></div>
+            <div class="inputElement"><span>Confirm Password:</span><input type="password" [(ngModel)]="confirmPassword" required/></div>
+            <div class="inputElement"><span>Photo:</span><input type="text" [(ngModel)]="newUser.UserPhoto"/></div>
+          </div>
+          <div class="panel-footer">
+            <input type="button" value="Register!" (click)="RegisterNewUser()"/>
+          </div>
+        </div>
+    </div>
+  </div>

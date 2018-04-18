@@ -1,0 +1,66 @@
+<div class="pageContent">
+<div class="container">
+  <div *ngIf="!showTheSummary">
+Please select car:
+<select [(ngModel)]="selectedCarLicensePlate"> 
+  <option *ngFor="let ord of ordersList" [value]="ord.CarToRent.LicensePlate">
+      {{ord.CarToRent.LicensePlate}} ({{ord.CarToRent.CarType.Producer}} {{ord.CarToRent.CarType.Model}} {{ord.CarToRent.CarType.ManufacturingYear}} {{ord.CarToRent.CarType.Gear}})
+  </option>
+</select> 
+<div *ngFor="let ord of ordersList">
+  <div *ngIf="ord.CarToRent.LicensePlate==selectedCarLicensePlate">
+<app-car-display-small     [car]="ord.CarToRent" [showButtons]="false"></app-car-display-small>
+<span>Order Number: {{ord.OrderId}}</span>
+Enter updated kilometers (previous - {{ord.CarToRent.CurrentKM}}): <input type="number" [(ngModel)]="UpdatedKm"/> <input type="button" value="Return!" (click)="returnCar(ord)">
+</div>
+</div>
+</div>
+
+<!-- The summary and statistics div -->
+<div *ngIf="showTheSummary">
+    <app-car-display-small     [car]="closedOrder.CarToRent" [showButtons]="false"></app-car-display-small>
+    <div class="panel panel-primary panel-xs">
+        <div class="panel-heading">
+          Order number {{closedOrder.OrderId}} - From {{closedOrder.StartRent | date:'dd-MM-yyyy'}} to {{closedOrder.EndRent | date:'dd-MM-yyyy'}}.
+          </div>
+    </div>
+    <div class="panel-body">
+    <p [hidden]="getDaysDifferance(closedOrder.ActualEndRent,closedOrder.EndRent)>=0">Actual return date: {{closedOrder.ActualEndRent}}, {{getDaysDifferance(closedOrder.EndRent,closedOrder.ActualEndRent)}} days late!</p>
+    <p>Total number of days: {{calcNumberOfDays(closedOrder)}}.</p>
+    <p>Number of kilometers at start: {{KmBefore}}.</p> 
+    <P>Number of kilometers at end: {{closedOrder.CarToRent.CurrentKM}}.</P>
+    <p>Total number of kilometers travelled: {{closedOrder.CarToRent.CurrentKM - KmBefore}}.      </p>
+    <p>Price to pay:</p>
+    <table>
+      <tr>
+        <th span=3>Price to pay:</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>For {{regularDays(closedOrder)}} days of regular rental, at the fee of {{closedOrder.CarToRent.CarType.DailyCost}} per day:</td>
+        <td>{{regularDays(closedOrder) * closedOrder.CarToRent.CarType.DailyCost | currency:'ILS':'symbol':'4.2-2'}}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>For {{penaltyDays(closedOrder)}} days of late return, at penalty fee of {{closedOrder.CarToRent.CarType.DailyPenaltyFee}} per day:</td>
+        <td>{{penaltyDays(closedOrder) * closedOrder.CarToRent.CarType.DailyPenaltyFee | currency:'ILS':'symbol':'4.2-2'}}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>For {{closedOrder.CarToRent.CurrentKM-KmBefore}} kilometers travelled at 0 per kilometers:</td>
+        <td>{{0| currency:'ILS':'symbol':'4.2-2'}}</td>
+      </tr>
+      <tr class="totals">
+        <td></td>
+        <td>Total:</td>
+        <td>{{(regularDays(closedOrder) * closedOrder.CarToRent.CarType.DailyCost) + (penaltyDays(closedOrder) * closedOrder.CarToRent.CarType.DailyPenaltyFee)| currency:'ILS':'symbol':'4.2-2'}}</td>
+      </tr>
+    </table>
+
+      </div>
+    
+      <div class="panel-footer">
+    <p>Thank you! Hope you had a good time, and looking forward to seeing you again!      </p>
+  </div>
+</div>
+</div></div>

@@ -1,0 +1,78 @@
+<section>
+  <table class="searchTable">
+    <tr>
+      <th>Search by:</th>
+      <th>Gear:</th>
+      <th>Company:</th>
+      <th>Model:</th>
+      <th>Year:</th>      
+      <th>Max. Daily Price:</th>
+      <th>Branch:</th>
+      <th>Start Date:</th>
+      <th>End Date:</th>
+      <th>Free Text:</th>
+    </tr>
+    <tr>
+        <td></td>
+      <td>
+        <input type="radio" name="searchGear"  (change)="searchAutomaticChanged(1)"/> Automatic<br/>
+        <input type="radio" name="searchGear" (change)="searchAutomaticChanged(2)"/>Manual<br/>
+        <input type="radio" name="searchGear" checked (change)="searchAutomaticChanged(0)"/> All
+      </td>
+      <td>
+          <select [ngModel]="searchProducer" (ngModelChange)="searchProducerChanged($event)">
+              <option  value="All" >All</option>
+              <option *ngFor="let carType of carTypeList;let i=index " [value]="carType.Producer" >{{carType.Producer}} </option>
+          </select>      
+      </td>
+      <td>
+          <select [ngModel]="searchModel" (ngModelChange)="searchModelChanged($event)">
+              <option  value="All" >All</option>
+              <option *ngFor="let carType of carTypeList;let i=index " [value]="carType.Model" >{{carType.Model}} </option>
+          </select>      
+      </td>
+      <td>
+          <select [ngModel]="searchYear" (ngModelChange)="searchYearChanged($event)">
+              <option  value=0 >All</option>
+              <option *ngFor="let carType of carTypeList;let i=index " [value]="carType.ManufacturingYear" >{{carType.ManufacturingYear}} </option>
+          </select>      
+      </td>
+      <td>
+        <input [ngModel]="searchMaxPrice" type="range" [min]="getMinPrice()" [max]="getMaxPrice()" #ref (change)="searchMaxPriceChanged(ref.value)"/><br/>
+        {{searchMaxPrice}}
+      </td>
+      <td>
+          <select [ngModel]="searchBranch" (ngModelChange)="searchBranchChanged($event)">
+              <option  value="All" >All</option>
+              <option *ngFor="let branch of branchesList;let i=index " [value]="branch.BranchName" >{{branch.BranchName}} </option>
+          </select>      
+      </td>
+      <td>
+          <div class="dateSelector">
+          <my-date-picker [options]="myDatePickerOptionsFrom" [(ngModel)]="dateFromObject" required (dateChanged)="onDateFromChanged($event)" *ngIf="toggle"></my-date-picker>
+        </div>
+      </td>
+      <td>
+          <div class="dateSelector">
+          <my-date-picker [options]="myDatePickerOptionsTo" [(ngModel)]="dateToObject" required (dateChanged)="onDateToChanged($event)" *ngIf="toggle"></my-date-picker>
+          </div>
+      </td>
+      <td>
+        <input type="text" [ngModel]="searchFreeText" (ngModelChange)="searchFreeTextChanged($event)"/>
+      </td>
+    </tr>
+  </table>
+</section>
+<section class="AllCars">
+  <table>
+    <tr *ngFor="let carRow of carTable">
+      <td *ngFor="let singleCar of carRow">
+          <app-car-display-small [hidden]="failedSearchCriteria(singleCar)"  [car]="singleCar" [showButtons]="true"></app-car-display-small>  
+      </td>
+    </tr>
+  </table>
+</section>
+<section class="FavCars">
+  Lately viewed by you:
+    <app-car-thumbnail *ngFor="let fav of favoriteCars" [fav]="fav" (click)="OnFavCarOrderClicked(fav);"></app-car-thumbnail>
+</section>

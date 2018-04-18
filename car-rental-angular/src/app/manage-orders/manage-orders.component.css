@@ -1,0 +1,15 @@
+input.ng-invalid {
+    background-color: pink;
+}
+.lateReturn
+{
+    color:red;
+    font-weight: bold;
+}
+
+.pageContent
+{
+    min-height: 850px;
+    height: 850px;
+    overflow-x: scroll;
+}

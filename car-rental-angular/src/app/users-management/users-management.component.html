@@ -1,0 +1,79 @@
+<div class="pageContent">
+<div class="container">
+    <p>
+  List of Users:
+      </p>
+    <div *ngIf="usersList!=null && usersList.length>0">
+      <input type="button" value="{{newUserView? 'Undo new user':'Add new user'}}" (click)="newUserRequired()" *ngIf="currentUser!=null && currentUser.Role=='admin'"/>
+        <table border="1" class="table table-striped table-hover">
+            <tr>
+                <th>FullName:</th>
+                <th>IdentificationNumber:</th>
+                <th>BirthDate:</th>
+                <th>Female?</th>
+                <th>Email:</th>
+                <th>UserName:</th>
+                <th>Password:</th>
+                <th>Photo:</th>
+                <th>Role:</th>
+                <th *ngIf="currentUser!=null && currentUser.Role=='admin'">Actions:</th>
+              </tr>
+              <tr *ngIf="newUserView && newUser!=null" class="addUser">
+                  <td><input type="text" [(ngModel)]="newUser.FullName" required/></td>
+                  <td><input type="number" [(ngModel)]="newUser.IdentificationNumber" required/></td>
+                  <td><my-date-picker [options]="myDatePickerOptionsAdd" (dateChanged)="onBirthDateChanged($event,true,newUser.UserName)" ></my-date-picker></td>
+                  <td><input type="radio" name="isFemale" [checked]="newUser.IsFemale" (change)="onGenderSelectionChange(true,1)"/>Female<input type="radio" name="isFemale" [checked]="!newUser.IsFemale" (change)="onGenderSelectionChange(true,0)"/>Male  </td>
+                  <td><input type="text" [(ngModel)]="newUser.Email" required/></td>
+                  <td><input type="text" [(ngModel)]="newUser.UserName" required/></td>
+                  <td><input type="password" [(ngModel)]="newUser.Password" required/></td>
+                  <td><input type="text" [(ngModel)]="newUser.UserPhoto"/></td>
+                  <td>
+                    <select [(ngModel)]="newUserRoleIndex">
+                        <option *ngFor="let userRole of userRolesList;let i=index " [value]="i" >{{userRole}}</option>
+                    </select>
+                </td>                    
+                <td><input type="button" value="ADD" (click)="addNewUser();" *ngIf="currentUser!=null && currentUser.Role=='admin'"/></td>
+              </tr>
+              <ng-container *ngFor="let user of usersList">
+              <tr> 
+                  <td>{{user.FullName}}</td>
+                  <td>{{user.IdentificationNumber}}</td>
+                  <td>{{user.BirthDate| date: 'dd-MM-yyyy'}}</td>
+                  <td><input type="checkbox" [checked]="user.IsFemale" disabled/></td>
+                  <td>{{user.Email}}</td>
+                  <td>{{user.UserName}}</td>
+                  <td><i>---hidden---</i></td>
+                  <td>
+                    <img *ngIf="user.UserPhoto!=''" [src]= "user.UserPhoto" height="100px"/>
+                  </td>
+                  <td>{{user.Role}}</td>
+                   
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'">
+                  <input type="button" value="DELETE!" (click)="deleteUser(user);" />
+                  <input type="button" value="UPDATE!" (click)="updateUser(user);" />
+                </td>
+              </tr>
+              <tr *ngIf="userToUpdate.UserName==user.UserName"> 
+                  <td><input type="text" [(ngModel)]="userToUpdate.FullName" required/></td>
+                  <td><input type="number" [(ngModel)]="userToUpdate.IdentificationNumber" required/></td>
+                  <td><my-date-picker [options]="myDatePickerOptionsUpdate"  [(ngModel)]="userToUpdateBDayObject" (dateChanged)="onBirthDateChanged($event,false,userToUpdate.UserName)" ></my-date-picker></td>
+                  <td><input type="radio" [name]="'isFemaleUpd' + userToUpdate.UserName" [checked]="userToUpdate.IsFemale" (change)="onGenderSelectionChange(false,1)"/>Female<input type="radio" [name]="'isFemaleUpd' + userToUpdate.UserName" [checked]="!userToUpdate.IsFemale" (change)="onGenderSelectionChange(false,0)"/>Male  </td>
+                  <td><input type="text" [(ngModel)]="userToUpdate.Email" required/></td>
+                  <td>{{userToUpdate.UserName}} </td>
+                  <td><input type="password" [(ngModel)]="userToUpdate.Password" required/></td>
+                  <td><input type="text" [(ngModel)]="userToUpdate.UserPhoto"/></td>
+                  <td>
+                    <select [(ngModel)]="userRoleToUpdateIndex">
+                        <option *ngFor="let userRole of userRolesList;let i=index " [value]="i" >{{userRole}}</option>
+                    </select>
+                </td>                    
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'">
+                  <input type="button" value="SAVE!" (click)="doUpdate(user);" />
+                  <input type="button" value="Undo changes" (click)="undoUpdate();" />
+                </td>
+              </tr>              
+            </ng-container>
+          </table>
+    </div>
+    </div>  
+  </div>

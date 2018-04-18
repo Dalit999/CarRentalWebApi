@@ -1,0 +1,46 @@
+.FavCars {
+    background-color: #fff;
+    min-width: 100%;
+    min-height: 100px;
+    display: flex;
+  }
+  .AllCars
+  {
+    justify-content: center;
+    align-items: center;
+      margin:20px;
+    height: 600px;
+    overflow: scroll;
+  }
+  td{
+      padding:20px;
+  }
+.searchTable
+{
+  margin-left:10%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.searchTable td
+{
+  margin:0px;
+  padding-top:3px;
+  padding-bottom:3px;
+  padding-left:15px;
+  padding-right:15px;
+  font-size:12px;
+}
+.searchTable th
+{
+  margin:0px;
+  font-size:12px;
+  padding-top:3px;
+  padding-bottom:3px;
+  padding-left:15px;
+  padding-right:15px;
+  
+}
+.dateSelector
+{
+  width:130px;
+}

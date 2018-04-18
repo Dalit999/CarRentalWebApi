@@ -1,0 +1,27 @@
+<table>
+    <tr>
+        <td>
+          <app-car-display-small  [car]="car" [showButtons]="false"></app-car-display-small>
+        </td>
+
+        <td>
+          <div class="calculationArea">
+              <div class="calcElement">
+                  From <my-date-picker [options]="myDatePickerOptionsFrom" [(ngModel)]="dateFromObject" required (dateChanged)="onDateFromChanged($event)" *ngIf="toggle"></my-date-picker>
+                </div>
+                <div class="calcElement">
+                  To <my-date-picker [options]="myDatePickerOptionsTo" [(ngModel)]="dateToObject" required (dateChanged)="onDateToChanged($event)" *ngIf="toggle"></my-date-picker>
+                </div>
+            <div class="calcElement">
+                <input type="button" (click)="doOrder()" value="ORDER!">
+            </div>  
+          </div>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+

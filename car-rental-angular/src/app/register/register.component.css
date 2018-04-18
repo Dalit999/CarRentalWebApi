@@ -1,0 +1,13 @@
+.inputElement
+{
+    display: block;
+}
+input.ng-invalid {
+    background-color: pink;
+}
+.pageContent
+{
+    min-height: 850px;
+    height: 850px;
+    overflow-x: scroll;
+}

@@ -1,0 +1,20 @@
+<div class="container">
+    <header>
+        <p class="userName">Hello, {{currentUser.FullName}}!</p>      
+<ul class="nav nav-pills">
+    <li ><a routerLink="/home">Home <span class="glyphicon glyphicon-home"></span></a></li>
+    <li><a routerLink="/cars">View Cars</a></li>
+    <li><a routerLink="/login" *ngIf="this.currentUser==null || this.currentUser.FullName=='visitor'">Login</a></li>
+    <li> <a routerLink="/register" *ngIf="this.currentUser==null || this.currentUser.FullName=='visitor'">Register</a></li>
+    <li><a routerLink="/myOrders" *ngIf="this.currentUser!=null && this.currentUser.FullName!='visitor'">My Orders</a></li>
+    <li><a routerLink="/ReturnCar" *ngIf="this.currentUser!=null && (this.currentUser.Role=='admin' || this.currentUser.Role=='employee')">Return Car</a></li>
+    <li><a routerLink="/branches" *ngIf="this.currentUser!=null && this.currentUser.Role=='admin'">Manage Branches</a></li>
+    <li><a routerLink="/branches" *ngIf="this.currentUser==null || this.currentUser.Role!='admin'">View Branches</a></li>
+    <li><a routerLink="/CarTypes" *ngIf="this.currentUser!=null && this.currentUser.Role=='admin'">Manage Car Types</a></li>
+    <li><a routerLink="/CarsManagement" *ngIf="this.currentUser!=null && this.currentUser.Role=='admin'">Manage Cars</a></li>
+    <li><a routerLink="/UsersManagement" *ngIf="this.currentUser!=null && this.currentUser.Role=='admin'">Manage Users</a></li>
+    <li><a routerLink="/OrdersManagement" *ngIf="this.currentUser!=null && this.currentUser.Role=='admin'">Manage Orders</a></li>
+    <li><a (click)="OnLogout()" *ngIf="this.currentUser!=null && this.currentUser.FullName!='visitor'">Logout</a></li>    
+</ul>
+</header>
+</div>

@@ -1,0 +1,79 @@
+<div class="pageContent">
+<div class="container">
+    <p>
+  List of Orders:
+      </p>
+    <div *ngIf="ordersList!=null && ordersList.length>0">
+      <input type="button" value="{{newOrderView? 'Undo new order':'Add new order'}}" (click)="newOrderRequired()" *ngIf="currentUser!=null && currentUser.Role=='admin'"/>
+        <table border="1" class="table table-striped table-hover">
+            <tr>
+                <th>Order Number:</th>
+                <th>Start Date:</th>
+                <th>End Date:</th>
+                <th>Actual Return Date:</th>
+                <th>User:</th>
+                <th>User Full Name:</th>
+                <th>Car License Plate:</th>
+                <th *ngIf="currentUser!=null && currentUser.Role=='admin'">Actions:</th>
+              </tr>
+              <tr *ngIf="newOrderView && newOrder!=null" class="addOrder">
+                  <td>{{newOrder.OrderId}}</td>
+                  <td><input type="date" [(ngModel)]="newOrder.StartRent" required/></td>
+                  <td><input type="date" [(ngModel)]="newOrder.EndRent" required/></td>
+                  <td><input type="date" [(ngModel)]="newOrder.ActualEndRent"/></td>
+                  <td colspan=2>
+                  <select [(ngModel)]="newOrder.RentingUser.UserName" required>
+                      <option *ngFor="let user of usersList;let i=index " [value]="user.UserName" >{{user.UserName}} ({{user.FullName}})</option>
+                  </select>  
+                </td>                
+                  <td>
+                    <select [(ngModel)]="newOrder.CarToRent.LicensePlate" required>
+                      <option *ngFor="let car of carsList;let i=index " [value]="car.LicensePlate" >{{car.LicensePlate}} ({{car.CarType.Producer}} {{car.CarType.Model}}  {{car.CarType.ManufacturingYear}} {{car.CarType.Gear}})</option>
+                    </select> 
+                  </td>
+                <td><input type="button" value="ADD" (click)="addNewOrder();" /></td>
+              </tr>
+              <ng-container *ngFor="let order of ordersList">
+              <tr> 
+                  <td>{{order.OrderId}}</td>
+                  <td>{{order.StartRent| date: 'dd-MM-yyyy' }}</td>
+                  <td>{{order.EndRent| date: 'dd-MM-yyyy'}}</td>
+                  <td>
+                    {{order.ActualEndRent| date: 'dd-MM-yyyy'}}
+                    <p *ngIf="order.ActualEndRent==null && getPenaltyDays(order)>0" class="lateReturn">
+                        {{getPenaltyDays(order)}} days late!!
+                    </p>
+                  </td>
+                  <td>{{order.RentingUser.UserName}}</td>
+                  <td>{{order.RentingUser.FullName}}</td>
+                  <td>{{order.CarToRent.LicensePlate}}</td>
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'">
+                  <input type="button" value="DELETE!" (click)="deleteOrder(order);" />
+                  <input type="button" value="UPDATE!" (click)="updateOrder(order);" />
+                </td>
+              </tr>
+              <tr *ngIf="orderToUpdate.OrderId==order.OrderId"> 
+                  <td>{{orderToUpdate.OrderId}}</td>
+                  <td><input type="date" [(ngModel)]="orderToUpdate.StartRent" required/></td>
+                  <td><input type="date" [(ngModel)]="orderToUpdate.EndRent" required/></td>
+                  <td><input type="date" [(ngModel)]="orderToUpdate.ActualEndRent"/></td>
+                  <td colspan=2>
+                      <select [(ngModel)]="orderToUpdate.RentingUser.UserName" required>
+                          <option *ngFor="let user of usersList;let i=index " [value]="user.UserName" >{{user.UserName}} ({{user.FullName}})</option>
+                      </select>  
+                    </td>                
+                  <td>
+                    <select [(ngModel)]="orderToUpdate.CarToRent.LicensePlate" required>
+                      <option *ngFor="let car of carsList;let i=index " [value]="car.LicensePlate" >{{car.LicensePlate}} ({{car.CarType.Producer}} {{car.CarType.Model}}  {{car.CarType.ManufacturingYear}} {{car.CarType.Gear}})</option>
+                    </select> 
+                  </td>
+                <td >
+                  <input type="button" value="SAVE!" (click)="doUpdate(order);" />
+                  <input type="button" value="Undo changes" (click)="undoUpdate();" />
+                </td>
+              </tr>              
+            </ng-container>
+          </table>
+    </div>
+    </div>  
+  </div>

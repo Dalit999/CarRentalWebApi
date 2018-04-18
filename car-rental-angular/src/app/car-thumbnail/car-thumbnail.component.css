@@ -1,0 +1,22 @@
+
+  .imgDiv
+  {
+      height:50px;
+  }
+  img{
+      height:50px;
+      margin-left:5px;
+  }
+  .littleSpace
+  {
+      margin:0;
+      padding-top:0;
+      padding-bottom:0;
+      font-size: 10px;
+  }
+  .FavCars--content {
+    border:2px solid cornflowerblue;
+    border-radius: 10%;
+  min-width: 100px;
+  margin: 5px;
+}

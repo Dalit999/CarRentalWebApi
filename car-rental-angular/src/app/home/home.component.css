@@ -1,0 +1,14 @@
+.pageContent
+{
+    min-height: 850px;
+    height: 850px;
+    overflow-x: scroll;
+}
+.homePahe
+{
+    text-align: center;
+}
+.homePahe img
+{
+    height: 600px;
+}

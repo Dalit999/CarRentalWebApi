@@ -1,0 +1,60 @@
+<div class="pageContent">
+<div class="container">
+    <p>
+  List of Branches:
+      </p>
+    <div *ngIf="branchesList!=null && branchesList.length>0">
+      <input type="button" value="{{newBranchView? 'Undo new branch':'Add new branch'}}" (click)="newBranchRequired()" *ngIf="currentUser!=null && currentUser.Role=='admin'"/>
+        <table border="1" class="table table-striped table-hover">
+            <tr>
+                <th>Branch Name:</th>
+                <th>Address:</th>
+                <th>Coordinates:</th>
+                <th *ngIf="currentUser!=null && currentUser.Role=='admin'">Actions:</th>
+              </tr>
+              <tr *ngIf="newBranchView && newBranch!=null && newBranch.Coordinates!=null" class="addBranch">
+                  <td><input type="text" [(ngModel)]="newBranch.BranchName" required/></td>
+                  <td><input type="text" [(ngModel)]="newBranch.Address" required/></td>
+                <td><input type="number" [(ngModel)]="newBranch.Coordinates.Latitude" required min="0" max="90"/>°
+                  <input type="number" [(ngModel)]="newBranch.Coordinates.LatitudeMinutes" required min="0" max="60"/>'
+                  <input type="radio" name="north" [checked]="newBranch.Coordinates.IsNorth"  (change)="onNorthSelectionChange(true,true)"/>North
+                  <input type="radio" name="north" [checked]="!newBranch.Coordinates.IsNorth" (change)="onNorthSelectionChange(false,true)"/>South<br/>
+                  <input type="number" [(ngModel)]="newBranch.Coordinates.Longitude" required min="0" max="180"/>°
+                  <input type="number" [(ngModel)]="newBranch.Coordinates.LongitudeMinutes" required min="0" max="60"/>'
+                  <input type="radio" name="east" [checked]="newBranch.Coordinates.IsEast" (change)="onEastSelectionChange(true,true)"/>East
+                  <input type="radio" name="east" [checked]="!newBranch.Coordinates.IsEast" (change)="onEastSelectionChange(false,true)"/>West
+                </td>
+                <td><input type="button" value="ADD" (click)="addNewBranch();" *ngIf="currentUser!=null && currentUser.Role=='admin'"/></td>
+
+              </tr>
+              <ng-container *ngFor="let branch of branchesList">
+              <tr > 
+                  <td>{{branch.BranchName}}</td>
+                  <td>{{branch.Address}}</td>
+                <td>{{branch.Coordinates.Latitude}}°{{branch.Coordinates.LatitudeMinutes}}'{{branch.Coordinates.IsNorth?"N":"S"}} {{branch.Coordinates.Longitude}}°{{branch.Coordinates.LongitudeMinutes}}'{{branch.Coordinates.IsEast?"E":"W"}}</td>
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'"><input type="button" value="DELETE!" (click)="deleteBranch(branch);" />
+                  <input type="button" value="UPDATE!" (click)="updateBranch(branch);" />
+                </td>
+              </tr>
+              <tr *ngIf="branchToUpdateId==branch.BranchId"> 
+                  <td> {{branchToUpdate.BranchName}}</td>
+                  <td><input type="text" [(ngModel)]="branchToUpdate.Address" required/></td>
+                <td>
+                  <input type="text" [(ngModel)]="branchToUpdate.Coordinates.Latitude" required/>°
+                  <input type="text" [(ngModel)]="branchToUpdate.Coordinates.LatitudeMinutes" required/>'
+                  <input type="radio" name="north" [checked]="branchToUpdate.Coordinates.IsNorth"  (change)="onNorthSelectionChange(true,false)"/>North
+                  <input type="radio" name="north" [checked]="!branchToUpdate.Coordinates.IsNorth" (change)="onNorthSelectionChange(false,false)"/>South<br/>&nbsp;
+                  <input type="text" [(ngModel)]="branchToUpdate.Coordinates.Longitude" required/>°
+                  <input type="text" [(ngModel)]="branchToUpdate.Coordinates.LongitudeMinutes" required/>'
+                  <input type="radio" name="east" [checked]="branchToUpdate.Coordinates.IsEast"  (change)="onEastSelectionChange(true,false)"/>East
+                  <input type="radio" name="east" [checked]="!branchToUpdate.Coordinates.IsEast" (change)="onEastSelectionChange(false,false)"/>West<br/></td>
+                <td *ngIf="currentUser!=null && currentUser.Role=='admin'">
+                  <input type="button" value="SAVE!" (click)="doUpdate(branch);" />
+                  <input type="button" value="Undo changes" (click)="undoUpdate();" />
+                </td>
+              </tr>
+              </ng-container>
+          </table>
+    </div>
+    </div>  
+  </div>
