@@ -66,7 +66,7 @@ export class  ManageOrdersComponent implements OnInit {
       }
     }
     this.newOrder.RentingUser.Password="Hidden";
-    this.myOrdersService.postNewOrder(this.newOrder,(o:Order)=>{alert("New Order added!");window.location.reload();},(resp:string)=>{alert(resp)});
+        this.myOrdersService.postNewOrder(this.newOrder,(o:Order)=>{alert("New Order added!");window.location.reload();},(resp:string)=>{alert(resp)});
   }
   deleteOrder(order:Order)
   {

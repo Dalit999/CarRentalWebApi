@@ -10,7 +10,10 @@ namespace _02_BO
         {
             if (value == null)
                 return false;
-            var idNumber = value.ToString();
+            int asNumber;
+            if (!int.TryParse(value.ToString(), out asNumber))
+                return false;
+            var idNumber = asNumber.ToString();
             if (idNumber==null)
                 return false;
             bool result = checkId(idNumber.PadLeft(9,'0'));

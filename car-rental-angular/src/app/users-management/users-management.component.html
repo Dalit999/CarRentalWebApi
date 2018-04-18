@@ -55,7 +55,7 @@
               </tr>
               <tr *ngIf="userToUpdate.UserName==user.UserName"> 
                   <td><input type="text" [(ngModel)]="userToUpdate.FullName" required/></td>
-                  <td><input type="number" [(ngModel)]="userToUpdate.IdentificationNumber" required/></td>
+                  <td><input  type="number" [(ngModel)]="userToUpdateId" required/></td>
                   <td><my-date-picker [options]="myDatePickerOptionsUpdate"  [(ngModel)]="userToUpdateBDayObject" (dateChanged)="onBirthDateChanged($event,false,userToUpdate.UserName)" ></my-date-picker></td>
                   <td><input type="radio" [name]="'isFemaleUpd' + userToUpdate.UserName" [checked]="userToUpdate.IsFemale" (change)="onGenderSelectionChange(false,1)"/>Female<input type="radio" [name]="'isFemaleUpd' + userToUpdate.UserName" [checked]="!userToUpdate.IsFemale" (change)="onGenderSelectionChange(false,0)"/>Male  </td>
                   <td><input type="text" [(ngModel)]="userToUpdate.Email" required/></td>

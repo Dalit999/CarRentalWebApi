@@ -19,6 +19,7 @@ export class  UsersManagementComponent implements OnInit {
   public userRolesList:string[] = new Array<string>();
   public newUserRoleIndex:number=0;
   public userToUpdate:User = new User();
+  public userToUpdateId:number =0;
   public userToUpdateBDayObject:any;
   public userRoleToUpdateIndex:number= 0;
   public myDatePickerOptionsAdd: IMyDpOptions = {
@@ -93,6 +94,7 @@ export class  UsersManagementComponent implements OnInit {
     this.userToUpdate= new User();
     this.userToUpdate.FullName= user.FullName;
     this.userToUpdate.IdentificationNumber= user.IdentificationNumber;
+    this.userToUpdateId= parseInt(user.IdentificationNumber);
     this.userToUpdate.UserName= user.UserName;
     this.userToUpdate.UserPhoto= user.UserPhoto;
     this.userToUpdate.BirthDate=new Date( user.BirthDate);
@@ -121,11 +123,13 @@ export class  UsersManagementComponent implements OnInit {
   {
     this.userToUpdate = new User();
     this.userRoleToUpdateIndex = 0;
+    this.userToUpdateId = 0;
   }
   doUpdate(user:User)
   {
     this.userToUpdate.Role= this.userRolesList[this.userRoleToUpdateIndex];
-        this.myUsersService.updateUser(this.userToUpdate,this.onUpdateSuccess,(message:string)=>this.onUpdateFail(message));
+    this.userToUpdate.IdentificationNumber= this.userToUpdateId.toString();
+    this.myUsersService.updateUser(this.userToUpdate,this.onUpdateSuccess,(message:string)=>this.onUpdateFail(message));
   }
 
     onUpdateSuccess():void{

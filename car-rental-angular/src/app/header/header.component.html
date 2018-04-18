@@ -1,6 +1,6 @@
 <div class="container">
     <header>
-        <p class="userName">Hello, {{currentUser.FullName}}!</p>      
+        <p class="userName"><img *ngIf="currentUser.UserPhoto!=null && currentUser.UserPhoto!=''" class="tiny" [src]="currentUser.UserPhoto" /> Hello, {{currentUser.FullName}}!</p>      
 <ul class="nav nav-pills">
     <li ><a routerLink="/home">Home <span class="glyphicon glyphicon-home"></span></a></li>
     <li><a routerLink="/cars">View Cars</a></li>

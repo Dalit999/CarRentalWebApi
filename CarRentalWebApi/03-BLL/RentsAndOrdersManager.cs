@@ -81,7 +81,8 @@ namespace _03_BLL
                         CarId = car.CarId,
                         UserId = user.UserId,
                         RentStartDate = order.StartRent,
-                        RentEndDate = order.EndRent
+                        RentEndDate = order.EndRent,
+                        ActualRentEndDate= order.ActualEndRent
                     };
 
                     //In a real-life application, the following should be done using a transaction, or with some locking mechanism!

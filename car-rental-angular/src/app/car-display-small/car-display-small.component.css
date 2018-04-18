@@ -10,3 +10,8 @@ img{
 {
     height:100px;
 }
+
+.limitWidth
+{
+    width:300px;
+}
